@@ -52,7 +52,7 @@ body{
     background-color: #d0d33f;
 }
 
-.button-debounce:hover, .button-nodebounce:hover{
+.button-debounce:hover, .button-nodebounce:hover, .button-clear:hover{
     transform: translateY(1px);
     box-shadow: -1px 1px 2px #00000022;
 }
@@ -81,6 +81,7 @@ body{
     color: white;
     text-align: center;
     line-height: 30px;
+    overflow: hidden;
 }
 
 .results p{

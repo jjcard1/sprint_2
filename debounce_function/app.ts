@@ -5,7 +5,8 @@ const list: HTMLElement | null = document.querySelector('.list-clicks')
 
 const addCounter = () => {
     n++
-    counter?.appendChild(n)
+    counter?.append('')
+    counter?.append(n)
 }
 
 const printClicks: () => void = () => {
@@ -52,7 +53,6 @@ btn_noDebounce.addEventListener('click', () => {
 btn_clear.addEventListener('click', () => {
     list?.append('')
     n = 0
+    counter?.append('')
     counter?.append(n)
 })
-
-module.exports = {addCounter, printClicks, debounce}
