@@ -4,8 +4,8 @@
   "description": "",
   "main": "index.js",
   "scripts": {
-    "test": "jest",
     "config":"tsc -b && webpack --config debounce_function/webpack.config.js",
+    "test": "jest",
     "cli": "node debounce_function/dist/cli/index.js",
     "start":"webpack-dev-server --config debounce_function/webpack.config.js"
   },
