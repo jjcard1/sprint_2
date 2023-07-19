@@ -4,10 +4,10 @@ const MiniCssExtractPlugin = require('mini-css-extract-plugin')
 
 module.exports = {
     entry: './debounce_function/dist/app.js',
-    module: 'development',
+    mode: 'development',
     output: {
-        path: path.resolve(__dirname, './dist'),
-        filename: 'frontend/bundle.js'
+        path: path.resolve(__dirname, './dist/frontend'),
+        filename: 'bundle.js'
     },
     module: {
         rules: [
@@ -25,7 +25,7 @@ module.exports = {
             }
         }),
         new MiniCssExtractPlugin({
-            filename: 'main.css'
+            filename: 'styles.css'
         })
     ]
 }

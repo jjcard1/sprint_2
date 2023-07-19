@@ -1,3 +1,5 @@
+require('../frontend/styles.css')
+
 // containers
 const counter:any = document.querySelector('.counter')
 const list: HTMLElement | null = document.querySelector('.list-clicks')
@@ -43,6 +45,7 @@ const debounce = (callback: Function, wait: number) => {
         }, wait)
     }
 }
+
 
 // actions
 let n:any = 0
