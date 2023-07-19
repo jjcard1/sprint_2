@@ -10,7 +10,7 @@
 `General Instructions`
 1. Clone the repository using git bash
 ```sh
-git clone https://github.com/jjcard1/sprint_1.git
+git clone https://github.com/jjcard1/sprint_2.git
 ```
 2. Install all required dependencies to execute the app, typing them in the terminal
 ```sh
@@ -52,6 +52,6 @@ npm run start
 localhost:8080
 ```
 
-Note: Sometimes the localhost port changes. When this happens, please check where the project is running in the information that appear in the terminal after completing the step 2.
+Note: Sometimes the localhost port changes. When this happens, please check where the project is running in the information that appear in the terminal after completing the step 1.
 
 To stop the server press "ctrl + c", type "s" and press "enter"
