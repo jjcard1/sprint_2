@@ -5,8 +5,9 @@
   "main": "index.js",
   "scripts": {
     "test": "jest",
-    "front": "tsc -b && node debounce_function/app.js",
-    "cli": "tsc -b && node debounce_function/dist/cli/index.js"
+    "tsc":"tsc -b && webpack --config debounce_function/webpack.config.js",
+    "cli": "node debounce_function/dist/cli/index.js",
+    "start":"webpack-web-server --config debounce_function/webpack.config.js"
   },
   "keywords": [],
   "author": "",

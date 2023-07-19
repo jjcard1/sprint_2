@@ -1,5 +1,5 @@
 import { program } from "commander"
-// const controllers = require('./controllers/debounce.controllers')
+const controllers = require('./controllers/debounce.controllers')
 
 const executeFunction = () => {
     program
@@ -10,14 +10,14 @@ const executeFunction = () => {
         .command('debounce <n>')
         .alias('de')
         .action(async (n:number) => {
-            console.log(`hola ${n}`)
+            controllers.printConsole('debounce', n)
         })
 
     program
         .command('nodebounce <n>')
         .alias('nde')
         .action(async (n:number) => {
-            console.log(`chau ${n}`)
+            controllers.printConsole('nodebounce', n)
         })
     
     program
