@@ -3,10 +3,10 @@ const HtmlWebpackPlugin = require('html-webpack-plugin')
 const MiniCssExtractPlugin = require('mini-css-extract-plugin')
 
 module.exports = {
-    entry: './dist/app.js',
+    entry: './debounce_function/dist/app.js',
     mode: 'development',
     output: {
-        path: path.resolve(__dirname, '../dist/frontend'),
+        path: path.resolve(__dirname, './dist/frontend'),
         filename: 'bundle.js'
     },
     module: {

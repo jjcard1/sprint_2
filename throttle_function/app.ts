@@ -1,4 +1,4 @@
-require('../debounce_function/frontend/styles.css')
+require('../frontend/styles.css')
 
 // containers
 const counter:any = document.querySelector('.counter')

@@ -1,5 +1,7 @@
-# Entrega 2.1 Debounce Function
+# ENTREGAS SPRINT 2
 ---
+
+# Entrega 2.1 Debounce Function
 
 ### _Goal_
 1. Use tests to check the functionality of the debounce function.
