@@ -107,7 +107,7 @@
     "skipLibCheck": true                                 /* Skip type checking all .d.ts files. */
   },
   "files": [
-    "./debounce_function/app.ts",
+    "./app.ts",
     "./debounce_function/cli/index.ts",
     "./debounce_function/cli/commands.ts",
     "./debounce_function/cli/controllers/debounce.controllers.ts"

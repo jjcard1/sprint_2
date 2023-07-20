@@ -3,10 +3,10 @@ const HtmlWebpackPlugin = require('html-webpack-plugin')
 const MiniCssExtractPlugin = require('mini-css-extract-plugin')
 
 module.exports = {
-    entry: './debounce_function/dist/app.js',
+    entry: './dist/app.js',
     mode: 'development',
     output: {
-        path: path.resolve(__dirname, './dist/frontend'),
+        path: path.resolve(__dirname, '../dist/frontend'),
         filename: 'bundle.js'
     },
     module: {
@@ -19,7 +19,7 @@ module.exports = {
     },
     plugins: [
         new HtmlWebpackPlugin({
-            template: './debounce_function/frontend/index.html',
+            template: './frontend/index.html',
             minify: {
                 collapseWhitespace: false
             }
