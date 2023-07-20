@@ -1,63 +1,38 @@
 require('../frontend/styles.css')
+const debounce = require('./frontend/scripts/debounce.js')
+const throttle = require('./frontend/scripts/throttle.js')
 
 // containers
-const counter:any = document.querySelector('.counter')
-const list: HTMLElement | null = document.querySelector('.list-clicks')
-list?.append('')
+const menuBar = document.querySelector('.menu-bar')
+const mainFunctions = document.querySelector('.main-functions')
 
-
-// create buttons
-const cont_btn: HTMLElement | null = document.querySelector('.cont-btn')
-const btn_debounce: HTMLElement = document.createElement('button')
-btn_debounce.setAttribute('class', 'button-debounce')
-btn_debounce.append('Debounce')
-const btn_noDebounce: HTMLElement = document.createElement('button')
-btn_noDebounce.setAttribute('class', 'button-nodebounce')
-btn_noDebounce.append('No Debounce')
-const btn_clear: HTMLElement = document.createElement('button')
-btn_clear.setAttribute('class', 'button-clear')
-btn_clear.append('Clear')
-cont_btn?.appendChild(btn_debounce)
-cont_btn?.appendChild(btn_noDebounce)
-cont_btn?.appendChild(btn_clear)
-
-
-// functions
-const addCounter = () => {
-    n++
-    counter?.append('')
-    counter.innerHTML = n
-}
-
-const printClicks: () => void = () => {
-    const p = document.createElement('p')
-    p.append('click');
-    list?.appendChild(p)
-};
-
-const debounce = (callback: Function, wait: number) => {
-    let timerID: any
-    return (...args:any) => {
-        addCounter()
-        clearTimeout(timerID)
-        timerID = setTimeout(() => {
-            callback(...args)
-        }, wait)
-    }
-}
-
-
-// actions
-let n:any = 0
-counter?.append(n)
-btn_debounce.addEventListener('click', debounce(printClicks, 1500))
-btn_noDebounce.addEventListener('click', () => {
-    addCounter()
-    printClicks()
+// menu options
+const arrayOptions = ['debounce', 'throttle', 'memoize']
+arrayOptions.forEach(op => {
+    const button:HTMLElement = document.createElement('button')
+    button.setAttribute('id', `btn_${op}`)
+    button.setAttribute('class', 'button-option')
+    button.append(op)
+    menuBar?.appendChild(button)
 })
-btn_clear.addEventListener('click', () => {
-    const ps = list?.querySelectorAll('p')
-    ps?.forEach(p => p.remove())
-    n = 0
-    counter.innerHTML = n
+
+// actions click btns nav
+const btn_debounce = menuBar?.querySelector('#btn_debounce')
+btn_debounce?.addEventListener('click', () => {
+    (mainFunctions as HTMLElement).innerHTML = ''
+    debounce.buildDebounce(mainFunctions)
+        .then((res:any) => debounce.runDebounceFunctions(res))
+    
+})
+
+const btn_throttle = menuBar?.querySelector('#btn_throttle')
+btn_throttle?.addEventListener('click', () => {
+    (mainFunctions as HTMLElement).innerHTML = ''
+    throttle.buildThrottle(mainFunctions)
+        .then((res:any) => throttle.runThrottleFunction(res))
+})
+
+const btn_memoize = menuBar?.querySelector('#btn_memoize')
+btn_memoize?.addEventListener('click', () => {
+    (mainFunctions as HTMLElement).innerHTML = ''
 })

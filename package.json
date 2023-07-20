@@ -6,7 +6,7 @@
   "scripts": {
     "config":"tsc -b && webpack --config frontend/webpack.config.js",
     "test": "jest",
-    "cli": "node debounce_function/dist/debounce_function/cli/index.js",
+    "cli": "node dist/debounce_function/cli/index.js",
     "start":"webpack-dev-server --config frontend/webpack.config.js"
   },
   "keywords": [],

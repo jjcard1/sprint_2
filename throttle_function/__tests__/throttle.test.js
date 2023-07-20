@@ -1,10 +1,10 @@
 const functions = require('../functions_to_test/functions')
 const mock = jest.fn();
 
-test('debounce function', (done) => {
-    const debouncedFn = functions.debounceTest(mock, 100);
-    debouncedFn();
-    expect(mock).not.toHaveBeenCalled();
+test('throttle function', (done) => {
+    const throttleFn = functions.throttleTest(mock, 100);
+    throttleFn();
+    expect(mock).toHaveBeenCalled();
 
     setTimeout(() => {
         expect(mock).toHaveBeenCalled();

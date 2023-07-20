@@ -1,3 +1,6 @@
+/*!***********************************************************************!*\
+  !*** css ./node_modules/css-loader/dist/cjs.js!./frontend/styles.css ***!
+  \***********************************************************************/
 *{
     box-sizing: border-box;
 }
@@ -166,13 +169,13 @@ body{
 }
 
 .btns-instructions-t{
-    display: flex;
-    align-items: center;
     width: 100%;
     height: 80px;
+    background-color: #7cc44c;
 }
 
 .instructions-t{
+    margin-top: 20px;
     width: 100%;
     text-align: center;
 }
@@ -182,15 +185,15 @@ body{
     font-size: 14px;
 }
 
-.cont-btn-t{
+.cont-btn{
     display: flex;
     justify-content: center;
     align-items: center;
-    min-width: 350px;
+    width: 100%;
     height: 100px;
 }
 
-.button-throttle, .button-nothrottle, .button-clear-t{
+.button-debounce, .button-nodebounce, .button-clear{
     padding: 5px 15px;
     border: none;
     border-radius: 4px;
@@ -198,40 +201,40 @@ body{
     cursor: pointer;
 }
 
-.button-throttle{
-    margin-right: 10px;
+.button-debounce{
+    margin-right: 20px;
     background-color: #7cc44c;
 }
 
-.button-nothrottle{
+.button-nodebounce{
     margin-right: 20px;
     background-color: #b8486a;
     color: white;
 }
 
-.button-clear-t{
+.button-clear{
     background-color: #d0d33f;
 }
 
-.button-throttle:hover, .button-nothrottle:hover, .button-clear-t:hover{
+.button-debounce:hover, .button-nodebounce:hover, .button-clear:hover{
     transform: translateY(1px);
     box-shadow: -1px 1px 2px #00000022;
 }
 
-.results-t{
+.results{
     position: relative;
     display: flex;
     flex-direction: column;
     align-items: center;
     padding: 10px;
     width: 100%;
-    height: 300px;
+    height: 600px;
     border-radius: 7px;
     background-color: white;
     overflow: auto;
 }
 
-.counter-t{
+.counter{
     position: absolute;
     top: 10px;
     left: 10px;
@@ -245,7 +248,7 @@ body{
     overflow: hidden;
 }
 
-.results-t p{
+.results p{
     margin: 0px 0px 5px;
     padding: 3px 20px;
     font-family: Arial, Helvetica, sans-serif;
