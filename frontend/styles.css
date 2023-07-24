@@ -261,12 +261,12 @@ body{
 .container-m{
     display: flex;
     position: relative;
-    width: 300px;
+    width: auto;
 }
 
 .btns-instructions-m{
     margin-right: 20px;
-    width: 100%;
+    width: 250px;
     border: 1px solid #e6e8ec;
     padding: 20px;
     border-radius: 10px;
@@ -274,8 +274,30 @@ body{
     background-color: #f5f5f5;
 }
 
+.cont-input-btn{
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding-bottom: 30px;
+    margin-bottom: 30px;
+    width: 100%;
+    border-bottom: 1px solid #e0e0e0;
+}
+
+.input-number{
+    width: 50px;
+    height: 30px;
+    border-radius: 5px;
+    border: 1px solid #545d66;
+}
+
+.input-number:focus{
+    border: 1px solid #266eb6;
+    outline: 2px solid #55dae4;
+}
+
 .instructions-m{
-    padding-top: 20px;
+    padding-bottom: 20px;
     width: 100%;
     text-align: left;
 }
@@ -285,12 +307,8 @@ body{
     font-size: 14px;
 }
 
-.cont-btn-m{
-    width: 100%;
-}
-
-.button-memoize, .button-nomemoize, .button-clear-m{
-    padding: 5px 15px;
+.button-memoize, .button-clear-m{
+    padding: 5px 30px;
     border: none;
     border-radius: 4px;
     box-shadow: -1px 2px 5px #00000022;
@@ -301,21 +319,20 @@ body{
 }
 
 .button-memoize{
-    margin-bottom: 10px;
-    background-color: #7cc44c;
+    color: #ffffff;
+    background-color: #e42967;
 }
 
-.button-nomemoize{
-    margin-bottom: 10px;
-    background-color: #b8486a;
-    color: white;
+.cont-btn-m{
+    width: 100%;
+    text-align: right;
 }
 
 .button-clear-m{
     background-color: #d0d33f;
 }
 
-.button-memoize:hover, .button-nomemoize:hover, .button-clear-m:hover{
+.button-memoize:hover, .button-clear-m:hover{
     transform: translateY(1px);
     box-shadow: -1px 1px 2px #00000022;
 }
@@ -332,20 +349,6 @@ body{
     border-radius: 7px;
     background-color: white;
     overflow: auto;
-}
-
-.counter-m{
-    position: absolute;
-    top: 20px;
-    left: 20px;
-    width: 30px;
-    height: 30px;
-    border-radius: 50%;
-    background-color: #b8486a;
-    color: white;
-    text-align: center;
-    line-height: 30px;
-    overflow: hidden;
 }
 
 .results-m p{

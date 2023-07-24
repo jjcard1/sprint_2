@@ -1,27 +1,45 @@
 const buildMemoize = (mainContainer:HTMLElement) => {
     return new Promise ((resolve, reject) => {
-        const container = document.createElement('div')
+        const container: HTMLElement = document.createElement('div')
         container.setAttribute('class', 'container-m')
         
-        const btns_instructions = document.createElement('div')
+        const btns_instructions: HTMLElement = document.createElement('div')
         btns_instructions.setAttribute('class', 'btns-instructions-m')
-        const cont_btn = document.createElement('div')
-        cont_btn.setAttribute('class', 'cont-btn-m')
-        const instructions = document.createElement('div')
-        instructions.setAttribute('class', 'instructions-m')
-        const p = document.createElement('div')
-        p.append('Click on the left-hand buttons to test the memoize function')
-        instructions.appendChild(p)
-        btns_instructions.appendChild(cont_btn)
-        btns_instructions.appendChild(instructions)
 
-        const results = document.createElement('div')
+        const contInputButton: HTMLElement = document.createElement('div')
+        contInputButton.setAttribute('class', 'cont-input-btn')
+        const inputNumber: HTMLElement = document.createElement('input')
+        inputNumber.setAttribute('type', 'number')
+        inputNumber.setAttribute('class', 'input-number')
+        inputNumber.setAttribute('min', '0')
+        inputNumber.setAttribute('max', '10')
+        const btn_memoize: HTMLElement = document.createElement('button')
+        btn_memoize.setAttribute('class', 'button-memoize')
+        btn_memoize.append('Memoize')
+
+        const instructions: HTMLElement = document.createElement('div')
+        instructions.setAttribute('class', 'instructions-m')
+        const p: HTMLElement = document.createElement('div')
+        p.append('Can save a number using a memoize function. Type a number between 0 and 10 and click on the Memoize button to run memoize function')
+        instructions.appendChild(p)
+
+        const cont_btn: HTMLElement = document.createElement('div')
+        cont_btn.setAttribute('class', 'cont-btn-m')
+        const btn_clear: HTMLElement = document.createElement('button')
+        btn_clear.setAttribute('class', 'button-clear-m')
+        btn_clear.append('Clear')
+        cont_btn.appendChild(btn_clear)
+
+        contInputButton.appendChild(inputNumber)
+        contInputButton.appendChild(btn_memoize)
+        btns_instructions.appendChild(instructions)
+        btns_instructions.appendChild(contInputButton)
+        btns_instructions.appendChild(cont_btn)
+
+        const results: HTMLElement = document.createElement('div')
         results.setAttribute('class', 'results-m')
-        const counter = document.createElement('div')
-        counter.setAttribute('class', 'counter-m')
-        const list_clicks = document.createElement('div')
+        const list_clicks: HTMLElement = document.createElement('div')
         list_clicks.setAttribute('class', 'list-clicks-m')
-        results.appendChild(counter)
         results.appendChild(list_clicks)
 
         container.appendChild(btns_instructions)
@@ -32,67 +50,61 @@ const buildMemoize = (mainContainer:HTMLElement) => {
     })
 }
 
-const runMemoizeFunction = (container:HTMLElement) => {
+const runMemoizeFunction = (container: HTMLElement) => {
     // containers
-    const counter:any = document.querySelector('.counter-m')
     const list: HTMLElement | null = document.querySelector('.list-clicks-m')
     list?.append('')
     
     // create buttons
-    const cont_btn: HTMLElement | null = document.querySelector('.cont-btn-m')
-    const btn_memoize: HTMLElement = document.createElement('button')
-    btn_memoize.setAttribute('class', 'button-memoize')
-    btn_memoize.append('Memoize')
-    const btn_noMemoize: HTMLElement = document.createElement('button')
-    btn_noMemoize.setAttribute('class', 'button-nomemoize')
-    btn_noMemoize.append('No Memoize')
-    const btn_clear: HTMLElement = document.createElement('button')
-    btn_clear.setAttribute('class', 'button-clear-m')
-    btn_clear.append('Clear')
-    cont_btn?.appendChild(btn_memoize)
-    cont_btn?.appendChild(btn_noMemoize)
-    cont_btn?.appendChild(btn_clear)
-
-
-    const addCounter = () => {
-        n++
-        counter?.append('')
-        counter.innerHTML = n
-    }
+    const btnMemoize:any = document.querySelector('.button-memoize')
+    const btnClear:any = document.querySelector('.button-clear-m')
+    const inpNumber:any = document.querySelector('.input-number')
 
     const printClicksM: () => void = () => {
+        (list as HTMLElement).innerHTML = ''
+        
         const p = document.createElement('p')
         p.append('click');
         list?.appendChild(p)
     };
 
-    let throttlePause: any;
-    const throttleFunction = (callback:Function, time:number) => {
-        addCounter()
-        if (throttlePause) return;
-        throttlePause = true;
-        setTimeout(() => {
-            callback();
-            throttlePause = false;
-        }, time);
+    const add = (n:number) => (n + 10);
+    console.log('Simple call', add(3));
+    const memoize = (fn:Function) => {
+        let cache:any = {}
+        return (...args:any) => {
+            let n = args[0]
+            if (n in cache) {
+                console.log('Fetching from cache');
+                return cache[n]
+            }
+            else {
+                console.log('Calculating result')
+                let result = fn(n)
+                cache[n] = result
+                return result
+            }
+        }
     }
+    // creating a memoized function for the 'add' pure function
+    const memoizedAdd = memoize(add);
+    console.log(memoizedAdd(3));  // calculated
+    console.log(memoizedAdd(3));  // cached
+    console.log(memoizedAdd(4));  // calculated
+    console.log(memoizedAdd(4));  // cached
+
+
+
+
+
+
+
 
     
     // actions
-    let n:any = 0
-    counter?.append(n)
-    btn_memoize.addEventListener('click', () => { 
-        throttleFunction(printClicksM, 1500)
-    })
-    btn_noMemoize.addEventListener('click', () => {
-        addCounter()
-        printClicksM() 
-    })
-    btn_clear.addEventListener('click', () => {
-        const ps = list?.querySelectorAll('p')
-        ps?.forEach(p => p.remove())
-        n = 0
-        counter.innerHTML = n
+    btnMemoize.addEventListener('click', () => { })
+    btnClear.addEventListener('click', () => {
+        (list as HTMLElement).innerHTML = ''
     })
 }
 
