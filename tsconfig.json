@@ -111,6 +111,9 @@
     "./debounce_function/cli/index.ts",
     "./debounce_function/cli/commands.ts",
     "./debounce_function/cli/controllers/debounce.controllers.ts",
+    "./throttle_function/cli/index.ts",
+    "./throttle_function/cli/commands.ts",
+    "./throttle_function/cli/controllers/throttle.controllers.ts",
     "./frontend/scripts/debounce.ts",
     "./frontend/scripts/throttle.ts",
     "./frontend/scripts/memoize.ts"

@@ -7,6 +7,7 @@
     "config": "tsc -b && webpack --config frontend/webpack.config.js",
     "test": "jest",
     "cli": "node dist/debounce_function/cli/index.js",
+    "clit": "node dist/throttle_function/cli/index.js",
     "start": "webpack-dev-server --config frontend/webpack.config.js"
   },
   "keywords": [],

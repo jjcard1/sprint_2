@@ -1,2 +1,2 @@
-const commands = require('./commands')
-commands.executeFunction()
+const commandsT = require('./commands')
+commandsT.executeFunction()

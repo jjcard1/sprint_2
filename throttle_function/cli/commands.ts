@@ -1,23 +1,23 @@
 import { program } from "commander"
-const controllers = require('./controllers/debounce.controllers')
+const controllers = require('./controllers/throttle.controllers')
 
 const executeFunction = () => {
     program
         .version('1.0.0')
-        .description('This CLI allow to test the debounce function')
+        .description('This CLI allow to test the throttle function')
 
     program
-        .command('debounce <n>')
-        .alias('de')
+        .command('throttle <n>')
+        .alias('th')
         .action(async (n:number) => {
-            controllers.printConsole('debounce', n)
+            controllers.printConsoleT('throttle', n)
         })
 
     program
-        .command('nodebounce <n>')
-        .alias('nde')
+        .command('nothrottle <n>')
+        .alias('nth')
         .action(async (n:number) => {
-            controllers.printConsole('nodebounce', n)
+            controllers.printConsoleT('nothrottle', n)
         })
     
     program
