@@ -1,6 +1,7 @@
 require('../frontend/styles.css')
 const debounce = require('./frontend/scripts/debounce.js')
 const throttle = require('./frontend/scripts/throttle.js')
+const memoize = require('./frontend/scripts/memoize.js')
 
 // containers
 const menuBar = document.querySelector('.menu-bar')
@@ -35,4 +36,6 @@ btn_throttle?.addEventListener('click', () => {
 const btn_memoize = menuBar?.querySelector('#btn_memoize')
 btn_memoize?.addEventListener('click', () => {
     (mainFunctions as HTMLElement).innerHTML = ''
+    memoize.buildMemoize(mainFunctions)
+        .then((res:any) => memoize.runMemoizeFunction(res))
 })
