@@ -28,7 +28,7 @@ var buildThrottle = function (mainContainer) {
         resolve(mainContainer);
     });
 };
-var runThrottleFunction = function () {
+var runThrottleFunction = function (container) {
     // containers
     var counter = document.querySelector('.counter-t');
     var list = document.querySelector('.list-clicks-t');
@@ -47,26 +47,37 @@ var runThrottleFunction = function () {
     cont_btn === null || cont_btn === void 0 ? void 0 : cont_btn.appendChild(btn_throttle);
     cont_btn === null || cont_btn === void 0 ? void 0 : cont_btn.appendChild(btn_noThrottle);
     cont_btn === null || cont_btn === void 0 ? void 0 : cont_btn.appendChild(btn_clear);
-    var throttleFunction = function (callback, wait) {
-        var prev = 0;
-        return function () {
-            var args = [];
-            for (var _i = 0; _i < arguments.length; _i++) {
-                args[_i] = arguments[_i];
-            }
-            var now = new Date().getTime();
-            console.log(now - prev, wait);
-            if (now - prev > wait) {
-                prev = now;
-                return callback.apply(void 0, args);
-            }
-        };
+    var addCounter = function () {
+        n++;
+        counter === null || counter === void 0 ? void 0 : counter.append('');
+        counter.innerHTML = n;
+    };
+    var printClicksT = function () {
+        var p = document.createElement('p');
+        p.append('click');
+        list === null || list === void 0 ? void 0 : list.appendChild(p);
+    };
+    var throttlePause;
+    var throttleFunction = function (callback, time) {
+        addCounter();
+        if (throttlePause)
+            return;
+        throttlePause = true;
+        setTimeout(function () {
+            callback();
+            throttlePause = false;
+        }, time);
     };
     // actions
     var n = 0;
     counter === null || counter === void 0 ? void 0 : counter.append(n);
-    btn_throttle.addEventListener('click', function () { });
-    btn_noThrottle.addEventListener('click', function () { });
+    btn_throttle.addEventListener('click', function () {
+        throttleFunction(printClicksT, 1500);
+    });
+    btn_noThrottle.addEventListener('click', function () {
+        addCounter();
+        printClicksT();
+    });
     btn_clear.addEventListener('click', function () {
         var ps = list === null || list === void 0 ? void 0 : list.querySelectorAll('p');
         ps === null || ps === void 0 ? void 0 : ps.forEach(function (p) { return p.remove(); });

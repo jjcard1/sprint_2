@@ -4,10 +4,10 @@
   "description": "",
   "main": "index.js",
   "scripts": {
-    "config":"tsc -b && webpack --config frontend/webpack.config.js",
+    "config": "tsc -b && webpack --config frontend/webpack.config.js",
     "test": "jest",
     "cli": "node dist/debounce_function/cli/index.js",
-    "start":"webpack-dev-server --config frontend/webpack.config.js"
+    "start": "webpack-dev-server --config frontend/webpack.config.js"
   },
   "keywords": [],
   "author": "",

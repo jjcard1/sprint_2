@@ -32,7 +32,7 @@ const buildThrottle = (mainContainer:HTMLElement) => {
     })
 }
 
-const runThrottleFunction = () => {
+const runThrottleFunction = (container:HTMLElement) => {
     // containers
     const counter:any = document.querySelector('.counter-t')
     const list: HTMLElement | null = document.querySelector('.list-clicks-t')
@@ -53,25 +53,41 @@ const runThrottleFunction = () => {
     cont_btn?.appendChild(btn_noThrottle)
     cont_btn?.appendChild(btn_clear)
 
-    const throttleFunction = (callback:Function, wait:number) => {
-        let prev = 0 
-        return (...args: any[]) => {
-            let now = new Date().getTime()
-            console.log(now - prev, wait) 
-            
-            if (now - prev > wait) {
-                prev = now;
-                return callback(...args) 
-            }
-        }
+
+    const addCounter = () => {
+        n++
+        counter?.append('')
+        counter.innerHTML = n
+    }
+
+    const printClicksT: () => void = () => {
+        const p = document.createElement('p')
+        p.append('click');
+        list?.appendChild(p)
+    };
+
+    let throttlePause: any;
+    const throttleFunction = (callback:Function, time:number) => {
+        addCounter()
+        if (throttlePause) return;
+        throttlePause = true;
+        setTimeout(() => {
+            callback();
+            throttlePause = false;
+        }, time);
     }
 
     
     // actions
     let n:any = 0
     counter?.append(n)
-    btn_throttle.addEventListener('click', () => {})
-    btn_noThrottle.addEventListener('click', () => {})
+    btn_throttle.addEventListener('click', () => { 
+        throttleFunction(printClicksT, 1500)
+    })
+    btn_noThrottle.addEventListener('click', () => {
+        addCounter()
+        printClicksT() 
+    })
     btn_clear.addEventListener('click', () => {
         const ps = list?.querySelectorAll('p')
         ps?.forEach(p => p.remove())
