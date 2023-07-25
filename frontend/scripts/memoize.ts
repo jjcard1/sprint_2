@@ -20,7 +20,7 @@ const buildMemoize = (mainContainer:HTMLElement) => {
         const instructions: HTMLElement = document.createElement('div')
         instructions.setAttribute('class', 'instructions-m')
         const p: HTMLElement = document.createElement('div')
-        p.append('Can save a number using a memoize function. Type a number between 0 and 10 and click on the Memoize button to run memoize function')
+        p.append('Calculates the square root of a number between 1 and 10. If you repeat the number this result will come from a data saved in cache. This is made with memoize function')
         instructions.appendChild(p)
 
         const cont_btn: HTMLElement = document.createElement('div')
@@ -50,7 +50,7 @@ const buildMemoize = (mainContainer:HTMLElement) => {
     })
 }
 
-const runMemoizeFunction = (container: HTMLElement) => {
+const runMemoizeFunction = () => {
     // containers
     const list: HTMLElement | null = document.querySelector('.list-clicks-m')
     list?.append('')
@@ -60,52 +60,47 @@ const runMemoizeFunction = (container: HTMLElement) => {
     const btnClear:any = document.querySelector('.button-clear-m')
     const inpNumber:any = document.querySelector('.input-number')
 
-    const printClicksM: () => void = () => {
-        (list as HTMLElement).innerHTML = ''
-        
-        const p = document.createElement('p')
-        p.append('click');
-        list?.appendChild(p)
+    const printClicksM = (num:number, origin:String) => {
+        const contPs = document.createElement('div')
+        contPs.setAttribute('class', 'cont-ps')
+        const p:HTMLElement = document.createElement('p')
+        p.setAttribute('class', 'p-num')
+        const calc:number = Math.sqrt(num)
+        p.append(calc.toString());
+        const cameFrom = document.createElement('p')
+        cameFrom.setAttribute('class', 'came-from')
+        if(origin === 'cache'){cameFrom.append('This number come from Cache')}
+        if(origin === 'funct'){cameFrom.append('This number has been calculated in the function')}
+        contPs.appendChild(p)
+        contPs.appendChild(cameFrom)
+        list?.appendChild(contPs)
+        return num
     };
 
-    const add = (n:number) => (n + 10);
-    console.log('Simple call', add(3));
     const memoize = (fn:Function) => {
         let cache:any = {}
         return (...args:any) => {
             let n = args[0]
             if (n in cache) {
-                console.log('Fetching from cache');
+                fn(n, 'cache');
                 return cache[n]
             }
             else {
-                console.log('Calculating result')
-                let result = fn(n)
+                let result = fn(n, 'funct')
                 cache[n] = result
                 return result
             }
         }
     }
     
-    // creating a memoized function for the 'add' pure function
-    const memoizedAdd = memoize(add);
-    console.log(memoizedAdd(3));  // calculated
-    console.log(memoizedAdd(3));  // cached
-    console.log(memoizedAdd(4));  // calculated
-    console.log(memoizedAdd(4));  // cached
-
-
-
-
-
-
-
-
-    
     // actions
-    btnMemoize.addEventListener('click', () => { })
+    const calculateSqr = memoize(printClicksM)
+    btnMemoize.addEventListener('click', () => {
+        calculateSqr(inpNumber.value)
+    })
     btnClear.addEventListener('click', () => {
         (list as HTMLElement).innerHTML = ''
+        inpNumber.value = ''
     })
 }
 

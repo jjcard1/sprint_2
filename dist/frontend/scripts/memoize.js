@@ -18,7 +18,7 @@ var buildMemoize = function (mainContainer) {
         var instructions = document.createElement('div');
         instructions.setAttribute('class', 'instructions-m');
         var p = document.createElement('div');
-        p.append('Can save a number using a memoize function. Type a number between 0 and 10 and click on the Memoize button to run memoize function');
+        p.append('Calculates the square root of a number between 1 and 10. If you repeat the number this result will come from a data saved in cache. This is made with memoize function');
         instructions.appendChild(p);
         var cont_btn = document.createElement('div');
         cont_btn.setAttribute('class', 'cont-btn-m');
@@ -42,7 +42,7 @@ var buildMemoize = function (mainContainer) {
         resolve(mainContainer);
     });
 };
-var runMemoizeFunction = function (container) {
+var runMemoizeFunction = function () {
     // containers
     var list = document.querySelector('.list-clicks-m');
     list === null || list === void 0 ? void 0 : list.append('');
@@ -50,14 +50,26 @@ var runMemoizeFunction = function (container) {
     var btnMemoize = document.querySelector('.button-memoize');
     var btnClear = document.querySelector('.button-clear-m');
     var inpNumber = document.querySelector('.input-number');
-    var printClicksM = function () {
-        list.innerHTML = '';
+    var printClicksM = function (num, origin) {
+        var contPs = document.createElement('div');
+        contPs.setAttribute('class', 'cont-ps');
         var p = document.createElement('p');
-        p.append('click');
-        list === null || list === void 0 ? void 0 : list.appendChild(p);
+        p.setAttribute('class', 'p-num');
+        var calc = Math.sqrt(num);
+        p.append(calc.toString());
+        var cameFrom = document.createElement('p');
+        cameFrom.setAttribute('class', 'came-from');
+        if (origin === 'cache') {
+            cameFrom.append('This number come from Cache');
+        }
+        if (origin === 'funct') {
+            cameFrom.append('This number has been calculated in the function');
+        }
+        contPs.appendChild(p);
+        contPs.appendChild(cameFrom);
+        list === null || list === void 0 ? void 0 : list.appendChild(contPs);
+        return num;
     };
-    var add = function (n) { return (n + 10); };
-    console.log('Simple call', add(3));
     var memoize = function (fn) {
         var cache = {};
         return function () {
@@ -67,27 +79,24 @@ var runMemoizeFunction = function (container) {
             }
             var n = args[0];
             if (n in cache) {
-                console.log('Fetching from cache');
+                fn(n, 'cache');
                 return cache[n];
             }
             else {
-                console.log('Calculating result');
-                var result = fn(n);
+                var result = fn(n, 'funct');
                 cache[n] = result;
                 return result;
             }
         };
     };
-    // creating a memoized function for the 'add' pure function
-    var memoizedAdd = memoize(add);
-    console.log(memoizedAdd(3)); // calculated
-    console.log(memoizedAdd(3)); // cached
-    console.log(memoizedAdd(4)); // calculated
-    console.log(memoizedAdd(4)); // cached
     // actions
-    btnMemoize.addEventListener('click', function () { });
+    var calculateSqr = memoize(printClicksM);
+    btnMemoize.addEventListener('click', function () {
+        calculateSqr(inpNumber.value);
+    });
     btnClear.addEventListener('click', function () {
         list.innerHTML = '';
+        inpNumber.value = '';
     });
 };
 module.exports = { buildMemoize: buildMemoize, runMemoizeFunction: runMemoizeFunction };
