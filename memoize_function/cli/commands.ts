@@ -1,23 +1,17 @@
 import { program } from "commander"
-const controllers = require('./controllers/debounce.controllers')
+const controllers = require('./controllers/memoize.controllers')
 
 const executeFunction = () => {
     program
         .version('1.0.0')
-        .description('This CLI allow to test the debounce function')
+        .description('This CLI calculate the square root of the given number. If the given number is repeated, the answer is going to take the data from cache')
 
     program
-        .command('debounce <n>')
-        .alias('de')
+        .command('memoize <n>')
+        .alias('me')
         .action(async (n:number) => {
-            controllers.printConsoleM('debounce', n)
-        })
-
-    program
-        .command('nodebounce <n>')
-        .alias('nde')
-        .action(async (n:number) => {
-            controllers.printConsoleM('nodebounce', n)
+            const res = controllers.printConsoleM(n)
+            console.table(res)
         })
     
     program

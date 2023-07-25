@@ -1,24 +1,34 @@
 
-const printsM = () => {
-    console.log('testing function')
-}
+const printClicksM = (num:number, origin:String) => {
+    let obj:any = {}
+    const calc:number = Math.sqrt(num)
+    if(origin === 'cache'){obj[calc] = 'This number come from Cache'}
+    if(origin === 'funct'){obj[calc] = 'This number has been calculated in the function'}
+    return obj
+};
 
-const memoizeFuncM = (callback: Function, wait: number) => {
-    let timerID: NodeJS.Timeout
+let cache:any = {}
+const memoizeCli = (fn:Function) => {
     return (...args:any) => {
-        clearTimeout(timerID)
-        timerID = setTimeout(() => {
-            callback(...args)
-        }, wait)
+        let n = args[0]
+        if (n in cache) {
+            const resultC = fn(n, 'cache');
+            return resultC
+        }
+        else {
+            const result = fn(n, 'funct')
+            cache[n] = result
+            return result
+        }
     }
 }
 
-const printConsoleM = (type:string, n:number) => {
-    for(let i = 0; i < n; i++){
-        if(type === 'memoize'){memoizeFuncM(printsM, 1500)}
-        if(type === 'nomemoize'){printsM()}
-    }
-    console.table({Callings: n})
+const calculateSqrCli = memoizeCli(printClicksM)
+
+const printConsoleM = (n:number) => {
+    const resu = calculateSqrCli(n)
+    return resu
 }
+
 
 module.exports = {printConsoleM}
