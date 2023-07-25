@@ -10,14 +10,14 @@ const executeFunction = () => {
         .command('debounce <n>')
         .alias('de')
         .action(async (n:number) => {
-            controllers.printConsole('debounce', n)
+            controllers.printConsoleM('debounce', n)
         })
 
     program
         .command('nodebounce <n>')
         .alias('nde')
         .action(async (n:number) => {
-            controllers.printConsole('nodebounce', n)
+            controllers.printConsoleM('nodebounce', n)
         })
     
     program

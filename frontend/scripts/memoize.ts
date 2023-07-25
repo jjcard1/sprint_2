@@ -86,6 +86,7 @@ const runMemoizeFunction = (container: HTMLElement) => {
             }
         }
     }
+    
     // creating a memoized function for the 'add' pure function
     const memoizedAdd = memoize(add);
     console.log(memoizedAdd(3));  // calculated

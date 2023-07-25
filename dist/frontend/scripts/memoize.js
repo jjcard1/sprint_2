@@ -49,7 +49,9 @@ var runMemoizeFunction = function (container) {
     // create buttons
     var btnMemoize = document.querySelector('.button-memoize');
     var btnClear = document.querySelector('.button-clear-m');
+    var inpNumber = document.querySelector('.input-number');
     var printClicksM = function () {
+        list.innerHTML = '';
         var p = document.createElement('p');
         p.append('click');
         list === null || list === void 0 ? void 0 : list.appendChild(p);
