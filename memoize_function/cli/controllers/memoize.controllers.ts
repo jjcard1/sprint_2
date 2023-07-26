@@ -1,24 +1,35 @@
-
+let cache:any = {}
 const printClicksM = (num:number, origin:String) => {
-    let obj:any = {}
     const calc:number = Math.sqrt(num)
-    if(origin === 'cache'){obj[calc] = 'This number come from Cache'}
-    if(origin === 'funct'){obj[calc] = 'This number has been calculated in the function'}
-    return obj
+    let des:string;
+    if(origin === 'cache'){
+        des = 'This number come from Cache'
+        return [num, calc, des]
+    }
+    if(origin === 'funct'){
+        des = 'This number has been calculated in the function'
+        return [num, calc, des]
+    }
 };
 
-let cache:any = {}
+interface objCache {
+    [key:number]: any
+}
+
 const memoizeCli = (fn:Function) => {
     return (...args:any) => {
         let n = args[0]
         if (n in cache) {
-            const resultC = fn(n, 'cache');
-            return resultC
+            const result = fn(n, 'cache');
+            const obj:objCache = {[result[1]]: result[2]}
+            return obj
         }
         else {
-            const result = fn(n, 'funct')
-            cache[n] = result
-            return result
+            const result:any[] = fn(n, 'funct')
+            cache[result[0]] = [result[1], result[2]]
+            console.log(cache)
+            const obj:objCache = {[result[0]]: [result[1], result[2]]}
+            return obj
         }
     }
 }
@@ -29,6 +40,5 @@ const printConsoleM = (n:number) => {
     const resu = calculateSqrCli(n)
     return resu
 }
-
 
 module.exports = {printConsoleM}

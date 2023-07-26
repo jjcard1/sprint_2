@@ -106,3 +106,48 @@ localhost:8080
 Note: Sometimes the localhost port changes. When this happens, please check where the project is running in the information that appear in the terminal after completing the step 1.
 
 To stop the server press "ctrl + c", and then type "s" to finally press "enter"
+
+
+
+
+
+## Entrega 2.3 Memoize Function
+
+### _Goal_
+1. Implement a memoize function. Use tests to test the functionality of the memoize function.
+2. Create a CLI to test the functionality of the memoize function.
+3. Create a frontend to test the functionality of the memoize function.
+
+`Activities`
+##### Level 1: Implement a memoize function. Use tests to test the functionality of the memoize function.
+For testing all functions to create CLI type the follow code
+```sh
+npm run test
+```
+##### Level 2: Create a CLI to test the functionality of the memoize function.
+To execute the CLI type the follow command line:
+```sh
+npm run clim <command> <number>
+```
+The options to use to run the CLI are listed below:
+|Commands|Alias|Descriptions|
+|---|---|---|
+|memoize <n>|me <n>|Run the memoize function|
+|--version|-V|Show the CLI version|
+|--help|-h|Show options and commands|
+
+
+##### Level 3: Create a frontend to test the functionality of the memoize function.
+To run the frontend to test the memoize function, please follow these steps:
+1. Create a server and run the frontend
+```sh
+npm run start
+```
+2. Type the follow localhost in the browser to watch and use the app:
+```sh
+localhost:8080
+```
+
+Note: Sometimes the localhost port changes. When this happens, please check where the project is running in the information that appear in the terminal after completing the step 1.
+
+To stop the server press "ctrl + c", and then type "s" to finally press "enter"
